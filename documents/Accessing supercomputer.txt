@@ -1,0 +1,33 @@
+Title: Accessing supercomputer
+
+=== comment ===
+Where can I find comprehensive documentation around end user access to supercomputer? Is https://secure.cci.rpi.edu/wiki/index.php/CCI_User_Wiki the right page ?
+Been through the wiki but couldnt find answers to what am looking for. Not a "programmer" per se so some basic questions:-
+Does this system have MATLAB (or the open source Octave). The list of software's does not mention this but I could be missing something. Having worked in a Windows environment and not having used C+ etc for a very long time want to make sure I dont have to change my presently built programs to a diff language
+How does the access process work? FAQ provides a link for setting up an account but is the corresponding research project charged for making use of the resources. If it is free for RPI students, are there any limitations around quantity of processing time used. Working on some parametric nonlinear optimization stuff and prototyping in laptop works well but with a couple of hundred thousand optimizations need a faster system and want to make sure it doesnt get stopped.
+
+=== comment ===
+For the CCI resources:
+You will probably want to go through your advisor. They should fill out the form to create a project, then you need to file forms to become a CCI user.
+As an RPI student you will get some free time on our IBM BlueGene/Q super computer. Normally, people pay to use these resources. The BlueGene/Q can run C, C++, and Fortran programs. See https://secure.cci.rpi.edu/wiki/index.php/Blue_Gene/Q for details about what libraries are available.
+You should take Professor Carothers's Parallel Programming/Parallel Computing course in the Fall. He is the director of the CCI and many of the class projects involve working on the BlueGene.
+
+=== comment ===
+Note that the CCI resources use a 'batch' queuing system to run jobs. You log in to the front end compute nodes to compile your program. Then you use 'sbatch' or 'salloc' to run a script. The system waits until the requested resources are available, then it will run your job.
+
+=== comment ===
+Keep in mind that a supercomputer is really only useful for parallel programs, and generally not what your "folks that are just looking for massive RAM/processing power" know how to utilize.
+Blue Gene Q has 1.6 GHz cores (slower than your laptop) with 1 GB of RAM per core (less than your laptop), so unless you can take advantage of a large number of cores, you'll likely be better off with your own computer.
+
+=== comment ===
+RPI has a bunch of supercomputer clusters. Since you posted the CCI wiki, I assume you're talking about the BlueGene Q, but there are clusters in biotech and CII that could also potentially be useful for you. I can tell you that access is dependent on you either being part of a class that uses it, or working under a professor for a project. Limitations are imposed by a scheduler that takes into account the resources you've already used, the amount of nodes requested and the priority/size of other projects running.
+
+=== comment ===
+The only class I know of is Parallel Programming, mentioned below. I think there's another though.
+The two clusters you linked to were the ones I know of, if there's a sysadmin contact you might want to try emailing it for any specific answers. I should also mention that the CCI houses an opteron cluster too, which might be more up your alley?
+As for the BG/Q, though, I can tell you that the easiest way is to loop your adviser or another professor in from the start. Even if it's a tentative idea that goes nowhere, that's what research is for, right?
+And since I'm curious if you don't have a background in CS, are you sure more processing power is going to help you here? The whole point of supercomputing is for programs that run in parallel. More hardware is only going to help to some extent if your program isn't built for it.
+
+=== comment ===
+Simply put, I'm using optimization toolbox to run series of analysis for varying sets of input parameters. Generating parameters through a For Loop. As per, http://www.mathworks.com/products/parallel-computing/builtin-parallel-support.html it seems codes dont need to be modified to take advantage of parallel computing?
+Just realized that the same link mentions need for parallel computing toolbox which RPI does not seem to license.

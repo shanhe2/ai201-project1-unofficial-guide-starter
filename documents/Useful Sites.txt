@@ -1,0 +1,26 @@
+Title: Useful Sites
+
+=== comment ===
+quacs.org - Visual schedule planner. Way better than trying to puzzle it on out SIS alone (you still register there)
+
+=== comment ===
+DegreeWorks - Track your major requirements. It's buried in SIS but worth finding early on to stay on track with everything, it doesn’t always count credits for duals correctly though so watch out.
+
+=== comment ===
+meridian.study - Shows all campus events in one feed, and you can see what events your friends are attending. Also helps you find empty rooms across campus when you need a quiet place to study outside your dorm.
+
+=== comment ===
+web.shuttletracker.app - Live shuttle tracking. Heads up: it's crowdsourced from students on the buses so accuracy varies. They’ve also got an IOS/Android app if you search for it.
+
+=== comment ===
+Yeah, I've found that QUACS is a godsend for picking classes, it's a lot more intuitive and easier to use than SIS. It's just that sometimes it doesn't save the schedule templates you've made on your account, so make sure to save screenshots of them as you use it.
+
+=== comment ===
+QUACs is absolutely a godsend. Just be sure to cross-check the info in there with the info in SIS, in case there is some update to the catalog. DegreeWorks is also very good at giving a general overview of your progress and what classes you need to take, but it can be very inaccurate, especially as you get deeper into your major, so also make sure you check in with your advisor about the credits you have/need.
+
+=== comment ===
+Quatalog.com is also good for future class planning. It shows all historical offerings of a course. You can see how regularly classes are taught, eg., if something is actually taught in spring of even years.
+
+=== comment ===
+we recently made a site called https://shmacs.org which combines many of RPI's most used features into one site. a scheduler similar to QuACS, a map to see how far of a trek you have between classes, programs pulled from the catalog, back exams, and much more. 
+
