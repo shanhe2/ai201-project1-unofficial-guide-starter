@@ -10,6 +10,7 @@
 ## Domain
 
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
+The domain I choose is campus community. Information about the campus community is crucial because it dictates a student's actual day-to-day college experience and sense of belonging. Some of the information is hard to find because official university resources like admission wesites are designed for marketing and administration. These resources are lack of unfiltered, real-time, peer-to-peer insights.
 
 ---
 
@@ -20,16 +21,16 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 |Reddit|First Year Housing Tier List |https://www.reddit.com/r/RPI/comments/1ap0cuk/first_year_housing/ |
+| 2 |Reddit|Prospective Student Q&A |https://www.reddit.com/r/RPI/comments/1qevhdr/prospective_student/ |
+| 3 |Reddit |Clubs recommanded |https://www.reddit.com/r/RPI/comments/cp98ps/what_clubsgroups_official_and_not_should_i_check/|
+| 4 | Reddit|Social life opinions|https://www.reddit.com/r/RPI/comments/1ayi1im/social_life_is_it_really_that_bad/ |
+| 5 |Reddit|On-campus gender inclusive housing |https://www.reddit.com/r/RPI/comments/1coxkbd/gender_inclusive_housing/ |
+| 6 |Reddit|Accessing supercomputer resources |https://www.reddit.com/r/RPI/comments/28ds30/accessing_supercomputer_resources/|
+| 7 |Reddit |Study spot recommandations for both on campus and off campus |https://www.reddit.com/r/RPI/comments/cf25ul/study_spots_onoff_campus/ |
+| 8 |Reddit|Useful websites for better campus experience |https://www.reddit.com/r/RPI/comments/1n1wdpg/sites_you_need_to_know_about_as_an_incoming/ |
+| 9 |Reddit|Incoming Freshman Packing List  |https://www.reddit.com/r/RPI/comments/uierkf/incoming_freshman_packing_list/ |
+| 10 |Reddit |Dorm Room necessities |https://www.reddit.com/r/RPI/comments/v0cwth/dorm_room_necessities/ |
 
 ---
 
@@ -40,11 +41,12 @@
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:**
+**Chunk size:** ~300 to 500 characters
 
-**Overlap:**
+**Overlap:** ~50 to 100 characters
 
-**Reasoning:**
+**Reasoning:** Reddit comments and review-style texts are incredibly dense. If someone reviews a dorm, they might mention the AC, the bathrooms, and the social vibe all in 400 characters. There're also some long reviews with 3-4 paragraphs. The overlap ensures the LLM know what do some paragraphs refer to. 
+
 
 ---
 
@@ -56,11 +58,11 @@
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** I will use all-MiniLM-L6-v2 via sentence-transformers. This is a lightweight, highly efficient model that runs locally.
 
-**Top-k:**
+**Top-k:** I plan to set top-k = 5
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** If cost wasn't a constraint, I'll collect as many data as I could and use a commercial API model to weigh upgrade. The large language model is able to capture more slang and informal internet speech accurately. While an API model might offer better accuracy, it introduces network latency and requires sending student-generated data to a third-party server. The local MiniLM model guarantees zero network latency and complete data privacy.
 
 ---
 
@@ -73,11 +75,11 @@
 
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 |What do students say about VCC North and VCC South? |It is pretty chill places to work in. |
+| 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. |
+| 3 |What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher.|
+| 4 |What do students say about the website QUACS|It's a godsend for picking classes |
+| 5 |What do students say about the space in Sharp dorm? | It's 101 sq ft.|
 
 ---
 
@@ -87,9 +89,9 @@
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. Because I am pulling from Reddit threads where students write conversationally, a reviewer might name the specific dorm in their very first sentence, and then write three subsequent paragraphs detailing their experience. Even with recursive chunking and overlap, there is a risk that the chunk containing the actual substantive review gets separated from the chunk containing the subject's name.
 
-2.
+2. Because I am using a lightweight, locally hosted embedding model (all-MiniLM-L6-v2), it may struggle to properly weigh these domain-specific terms compared to standard English vocabulary. This creates a risk of off-topic retrieval.
 
 ---
 
@@ -100,6 +102,16 @@
      Label each stage with the tool or library you're using.
      You can use ASCII art, a Mermaid diagram, or embed a sketch as an image.
      You'll use this diagram as context when prompting AI tools to implement each stage. -->
+     
+## Architecture
+
+```mermaid
+graph TD
+    A["Document Ingestion\n(Python, os, glob)"] --> B["Chunking\n(LangChain TextSplitter)"]
+    B --> C["Embedding & Vector Store\n(all-MiniLM-L6-v2 & ChromaDB)"]
+    C --> D["Retrieval\n(Semantic Search)"]
+    D --> E["Generation\n(Groq: llama-3.3-70b)"]
+```
 
 ---
 
