@@ -49,9 +49,9 @@ RPI campus community knowledge including housing, clubs, social life, study spot
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:** 400 characters
+**Chunk size:** 400 characters. Reddit comments and review-style texts are incredibly dense. If someone reviews a dorm, they might mention the AC, the bathrooms, and the social vibe all in 400 characters. This size allows whole sentences get include and not too large.
 
-**Overlap:** 75 characters
+**Overlap:** 75 characters. There're some long reviews with 3-4 paragraphs. The overlap ensures the LLM know what do some paragraphs refer to. 
 
 **Why these choices fit your documents:** Documents were preprocessed by inserting === comment === delimiters between Reddit comments before chunking. The splitter splits on that delimiter first, keeping each person's opinion as an atomic unit, then sub-splits only within long comments. The Title: line is prepended to every chunk so retrieved chunks carry their subject even if sub-split.
 
