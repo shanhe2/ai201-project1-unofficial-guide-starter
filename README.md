@@ -99,11 +99,11 @@ If the passages do not contain enough information to answer the question, respon
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 |What do students say about VCC North and VCC South? |It is pretty chill places to work in. | Relevant| Accurate|Correct answer retrieved |
-| 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. | Relevant| Accurate|Correct source retrieved. |
-| 3 | What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher. | Relevant| Accurate| Core answer correct, extra detail from a second chunk|
-| 4 | What do students say about the website QUACS|It's a godsend for picking classes  | Relevant| Accurate|Correct answer retrieved. |
-| 5 |What do students say about the sq ft in Sharp dorm? | It's 101 sq ft.| Partially relevant|Partially accurate | it invented a list structure that doesn't exist in my prompt|
+| 1 |What do students say about VCC North and VCC South? |It is pretty chill places to work in. |Correct answer retrieved | Relevant| Accurate|
+| 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. |Correct source retrieved. | Relevant| Accurate|
+| 3 | What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher. | Core answer correct, extra detail from a second chunk| Relevant| Accurate|
+| 4 | What do students say about the website QUACS|It's a godsend for picking classes  |Correct answer retrieved. | Relevant| Accurate|
+| 5 |What do students say about the sq ft in Sharp dorm? | It's 101 sq ft.| it invented a list structure that doesn't exist in my prompt| Partially relevant|Partially accurate |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
