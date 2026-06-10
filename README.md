@@ -22,18 +22,18 @@
      Be specific: include URLs, subreddit names, forum thread titles, or file names.
      Aim for variety — sources that together cover different subtopics or perspectives. -->
 
-| # | Source | Type | URL or file path |
-|---|--------|------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| # | Source | Description | URL or location |
+|---|--------|-------------|-----------------|
+| 1 |Reddit|First Year Housing Tier List |https://www.reddit.com/r/RPI/comments/1ap0cuk/first_year_housing/ |
+| 2 |Reddit|Prospective Student Q&A |https://www.reddit.com/r/RPI/comments/1qevhdr/prospective_student/ |
+| 3 |Reddit |Clubs recommanded |https://www.reddit.com/r/RPI/comments/cp98ps/what_clubsgroups_official_and_not_should_i_check/|
+| 4 | Reddit|Social life opinions|https://www.reddit.com/r/RPI/comments/1ayi1im/social_life_is_it_really_that_bad/ |
+| 5 |Reddit|On-campus gender inclusive housing |https://www.reddit.com/r/RPI/comments/1coxkbd/gender_inclusive_housing/ |
+| 6 |Reddit|Accessing supercomputer resources |https://www.reddit.com/r/RPI/comments/28ds30/accessing_supercomputer_resources/|
+| 7 |Reddit |Study spot recommandations for both on campus and off campus |https://www.reddit.com/r/RPI/comments/cf25ul/study_spots_onoff_campus/ |
+| 8 |Reddit|Useful websites for better campus experience |https://www.reddit.com/r/RPI/comments/1n1wdpg/sites_you_need_to_know_about_as_an_incoming/ |
+| 9 |Reddit|Incoming Freshman Packing List  |https://www.reddit.com/r/RPI/comments/uierkf/incoming_freshman_packing_list/ |
+| 10 |Reddit |Dorm Room necessities |https://www.reddit.com/r/RPI/comments/v0cwth/dorm_room_necessities/ |
 
 ---
 
@@ -46,13 +46,13 @@
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:**
+**Chunk size:** ~300 to 500 characters
 
-**Overlap:**
+**Overlap:** ~50 to 100 characters
 
-**Why these choices fit your documents:**
+**Why these choices fit your documents:** Reddit comments and review-style texts are incredibly dense. If someone reviews a dorm, they might mention the AC, the bathrooms, and the social vibe all in 400 characters. There're also some long reviews with 3-4 paragraphs. The overlap ensures the LLM know what do some paragraphs refer to. 
 
-**Final chunk count:**
+**Final chunk count:** 145
 
 ---
 
@@ -64,9 +64,10 @@
      Consider: context length limits, multilingual support, accuracy on domain-specific text,
      latency, and local vs. API-hosted. -->
 
-**Model used:**
+**Model used:** all-MiniLM-L6-v2 via sentence-transformers
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** If cost wasn't a constraint, I'll collect as many data as I could and use a commercial API model to weigh upgrade. The large language model is able to capture more slang and informal internet speech accurately. While an API model might offer better accuracy, it introduces network latency and requires sending student-generated data to a third-party server. The local MiniLM model guarantees zero network latency and complete data privacy.
+
 
 ---
 
@@ -79,7 +80,7 @@
      Do not just say "I told it to use the documents" — show the actual instruction or explain
      the mechanism. -->
 
-**System prompt grounding instruction:**
+**System prompt grounding instruction:** 
 
 **How source attribution is surfaced in the response:**
 
@@ -93,11 +94,11 @@
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+| 1 |What do students say about VCC North and VCC South? |It is pretty chill places to work in. | | | |
+| 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. | | | |
+| 3 | What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher. | | | |
+| 4 | What do students say about the website QUACS|It's a godsend for picking classes  | | | |
+| 5 |What do students say about the space in Sharp dorm? | It's 101 sq ft.| | | |
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
@@ -151,12 +152,50 @@
 
 **Instance 1**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* What are the ways to get my documents from Reddit websites.
+- *What it produced:* Option A — Plain copy/paste (simplest)
+Open each thread in your browser.
+Select the post + the comments you want, copy.
+Paste into a new .txt file in your documents/ folder.
+Name each file after the topic, e.g. dorm_room_necessities.txt, first_year_housing.txt.
+Tip: use old.reddit.com instead of www — same thread, much cleaner layout that copies without all the UI clutter. Just change the domain in the URL bar.
+
+Option B — Save the JSON in your browser, then parse it (keeps structure)
+The .json endpoint works in your real browser even though the script got 403'd:
+
+In your browser, open each thread URL with .json appended, e.g. https://www.reddit.com/r/RPI/comments/v0cwth/dorm_room_necessities/.json
+Ctrl+S → save it into a new raw/ folder (e.g. raw/dorm_room_necessities.json).
+I give you a tiny parser that reads every file in raw/ and writes clean .txt files into documents/ — post + top-level comments, plain text, exactly like before but reading from disk instead of the network.
+- *What I changed or overrode:* Since there's only 10 reddit websites as my source, I chose to follow option A. 
 
 **Instance 2**
 
-- *What I gave the AI:*
-- *What it produced:*
-- *What I changed or overrode:*
+- *What I gave the AI:* As I'm following option A, is there a way to make sure chunking recognize the difference between different comments and one comment with several paragraphs?
+- *What it produced:* What the chunker actually sees vs. what you want it to see
+A RecursiveCharacterTextSplitter (your planning.md choice) does one thing: it counts characters up to your chunk size (~300–500), and when it has to cut, it prefers to cut at a separator — \n\n first, then \n, then a space. That's it. It has zero concept of "person," "opinion," or "comment." It's a character counter with a tie-breaker.
+So the boundary you care about (one person's complete opinion) and the boundary the splitter uses (a blank line that happens to fall near the 500-char mark) are two different things that only sometimes line up. That mismatch is exactly why it feels hard — you're not imagining it.
+The fix: encode the boundary the splitter can't infer
+Since the chunker can't discover where one person stops, you tell it at ingestion time. Two levels:
+
+1. Make each comment an atomic unit. Don't flatten everything into one blob and turn the splitter loose. Instead, split the document into comments first (on a delimiter you control), then only size-split within a comment if it's genuinely too long. One comment → one chunk (or several chunks that all belong to the same author).
+
+2. Re-attach the subject to every chunk. Prefix each chunk with the thread title, so even a half-comment carries Title: First Year Housing — that's your defense for Challenge #1 in planning.md.
+
+Concretely, the format I'd save in becomes:
+
+
+Title: First Year Housing Tier List
+
+=== comment ===
+Really depends on what you value. Most people prefer...
+
+=== comment ===
+You can't live outside RPI residence halls till 3rd year...
+
+=== comment ===
+I always assumed most student-athletes get put in BARH...
+Davison and Nugent. Every prospective freshman... (250 sq ft)...
+Barton. If you're okay with a forced triple...
+[the whole tier list — ONE person — stays in this block]
+Then at chunk time you split on === comment === first. Each block is one author. A long block (like the tier list) gets sub-split by size within itself, so worst case you split one person's opinion — never merge two.
+- *What I changed or overrode:* I followed the formatt it suggested. It made chunking step easier. 
