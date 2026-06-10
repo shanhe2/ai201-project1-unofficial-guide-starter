@@ -92,7 +92,7 @@ EVAL_QUESTIONS = [
     "Does RPI have a supercomputer cluster?",
     "What do people say about the Fall rush for Greek life?",
     "What do students say about the website QUACS?",
-    "What do students say about the space in Sharp dorm?",
+    "What do students say about the sq ft in Sharp dorm?",
 ]
 
 
