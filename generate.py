@@ -40,7 +40,8 @@ Do not use any knowledge from your training data. Do not guess or infer details
 that are not explicitly stated in the passages.
 If the passages do not contain enough information to answer the question,
 respond with exactly: "I don't have enough information in my sources to answer that."
-Keep your answer concise and direct.\
+Keep your answer concise and direct.
+Write your answer as a single prose response. Do not number your answer or mirror the passage numbering.\
 """
 
 
