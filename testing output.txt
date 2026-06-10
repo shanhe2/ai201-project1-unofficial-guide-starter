@@ -34,6 +34,8 @@ Sources: First Year Housing Tier List.txt, Prospective Student.txt
 
 cd \"d:\\2026Summer\\codepath\\ai201-project1-unofficial-guide-starter\"; python random_chunk.py 5 --seed 7 2>$null
 
+########## RANDOM CHUNK 1  [Incoming Freshman Packing List.txt]  len=323 ##########
+
 Title: Incoming Freshman Packing List
 
 Buy a jacket that is 2 layers (some call it 3 in 1) - a polyester warmer layer and a waterproof outer layer with a hood. You can wear the inner layer as a sweatshirt, the outer layer as a rain jacket, or both layers when it's cold. Get gloves, hat, waterproof boots with good traction
