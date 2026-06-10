@@ -14,6 +14,9 @@
      Example: "Student reviews of CS professors at [university] — useful because official
      course descriptions don't reflect teaching style, exam difficulty, or workload." -->
 
+RPI campus community knowledge including housing, clubs, social life, study spots, packing, and campus resources, sourced from student Reddit threads. This knowledge is valuable because it reflects unfiltered, peer-to-peer experience that dictates a student's actual day-to-day college life. Official university resources like admissions websites are designed for marketing and administration. These websites are lack real-time student opinions on which dorms have AC, what Greek life rush actually looks like, or which websites make scheduling bearable.
+
+
 ---
 
 ## Document Sources
@@ -46,11 +49,11 @@
      - Any preprocessing you did before chunking (e.g., stripping HTML, removing headers)
      - What your final chunk count was across all documents -->
 
-**Chunk size:** ~300 to 500 characters
+**Chunk size:** 400 characters
 
-**Overlap:** ~50 to 100 characters
+**Overlap:** 75 characters
 
-**Why these choices fit your documents:** Reddit comments and review-style texts are incredibly dense. If someone reviews a dorm, they might mention the AC, the bathrooms, and the social vibe all in 400 characters. There're also some long reviews with 3-4 paragraphs. The overlap ensures the LLM know what do some paragraphs refer to. 
+**Why these choices fit your documents:** Documents were preprocessed by inserting === comment === delimiters between Reddit comments before chunking. The splitter splits on that delimiter first, keeping each person's opinion as an atomic unit, then sub-splits only within long comments. The Title: line is prepended to every chunk so retrieved chunks carry their subject even if sub-split.
 
 **Final chunk count:** 145
 
@@ -133,9 +136,9 @@
 <!-- Reflect on how planning.md shaped your implementation.
      Answer both questions with at least 2–3 sentences each. -->
 
-**One way the spec helped you during implementation:**
+**One way the spec helped you during implementation:** My planning.md Chunking Strategy section planned the 300–500 / 50–100 character targets upfront, which gave clear parameters to hand to the implementation. Without it, chunk size would have been arbitrary.
 
-**One way your implementation diverged from the spec, and why:**
+**One way your implementation diverged from the spec, and why:**  The spec described a plain RecursiveCharacterTextSplitter pass over the documents. During implementation it became clear the splitter couldn't distinguish between different people's comments (it's just a character counter). The approach was changed to insert === comment === delimiters at ingestion time so the splitter always cuts between people first, never across them.
 
 ---
 
