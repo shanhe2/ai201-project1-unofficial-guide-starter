@@ -1,33 +1,3 @@
-Q: What do students say about VCC North and VCC South?
-A: 1. Students say that VCC North and VCC South are "pretty chill places to work in".
-2. One of them, either north or south, has the option to connect a laptop to TVs and work with 4 giant screens, which is considered "pretty neat".
-Sources: Study Spots.txt, Useful Sites.txt, Social Life.txt, First Year Housing Tier List.txt
-------------------------------------------------------------
-
-Q: Does RPI have a supercomputer cluster?
-A: 1. RPI has multiple supercomputer clusters, including the BlueGene Q, an opteron cluster, and clusters in biotech and CII.
-Sources: Accessing supercomputer.txt
-------------------------------------------------------------
-
-Q: What do people say about the Fall rush for Greek life?
-A: 1. People say that Fall rush is now only open to sophomores and higher, and that attending rush events is a great way to meet people and find a fraternity that you click with.
-4. People also say that attending as many rush events as you can is a great way to meet people and that rush events are always a blast.
-Sources: Clubs recommanded.txt, Social Life.txt, First Year Housing Tier List.txt
-------------------------------------------------------------
-
-Q: What do students say about the website QUACS?
-A: 1. Students say QUACS is "absolutely a godsend" and "a lot more intuitive and easier to use than SIS" for picking classes.
-3. However, they note that it sometimes doesn't save schedule templates, so they recommend saving screenshots.
-5. Overall, students find QUACS to be a useful tool, describing it as "way better" than using SIS alone for visual schedule planning.
-Sources: Useful Sites.txt
-------------------------------------------------------------
-
-Q: What do students say about the space in Sharp dorm?
-A: 1. Students say that in Sharp dorm, they get their own private room with good AC, and there is 1 common room and 4 single rooms per apartment.
-2. Students have heard a ton of nice things about Sharp, with 101 sq ft single suites, but note that some amenities are missing or in the basement.
-Sources: First Year Housing Tier List.txt, Dorm Room necessities.txt, Prospective Student.txt
-------------------------------------------------------------
-(.venv) yi@Yis-MacBook-Pro ai201-project1-unofficial-guide-starter % python generate.py
 
 Q: What do students say about VCC North and VCC South?
 A: 1. Students say that VCC North and VCC South are "pretty chill places to work in".
@@ -61,3 +31,5 @@ A: 1. Students have heard a ton of nice things about Sharp dorm, which has 101 s
 5. No information about Sharp dorm or its sq ft.
 Sources: First Year Housing Tier List.txt, Prospective Student.txt
 ------------------------------------------------------------
+
+cd \"d:\\2026Summer\\codepath\\ai201-project1-unofficial-guide-starter\"; python random_chunk.py 5 --seed 7 2>$null
