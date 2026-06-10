@@ -79,7 +79,7 @@ The domain I choose is campus community. Information about the campus community 
 | 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. |
 | 3 |What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher.|
 | 4 |What do students say about the website QUACS|It's a godsend for picking classes |
-| 5 |What do students say about the space in Sharp dorm? | It's 101 sq ft.|
+| 5 |What do students say about the sq ft in Sharp dorm? | It's 101 sq ft.|
 
 ---
 
