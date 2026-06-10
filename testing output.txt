@@ -33,3 +33,28 @@ Sources: First Year Housing Tier List.txt, Prospective Student.txt
 ------------------------------------------------------------
 
 cd \"d:\\2026Summer\\codepath\\ai201-project1-unofficial-guide-starter\"; python random_chunk.py 5 --seed 7 2>$null
+
+Title: Incoming Freshman Packing List
+
+Buy a jacket that is 2 layers (some call it 3 in 1) - a polyester warmer layer and a waterproof outer layer with a hood. You can wear the inner layer as a sweatshirt, the outer layer as a rain jacket, or both layers when it's cold. Get gloves, hat, waterproof boots with good traction
+
+########## RANDOM CHUNK 2  [Dorm Room necessities.txt]  len=427 ##########
+Title: Dorm Room necessities
+
+. Wifi was fine, but definitely also bring a long ethernet cord. Some regular printing is included free https://itssc.rpi.edu/hc/en-us/articles/360004259072-Printing-Charges Learn to not leave things to the last minute, as printers might not print correctly when you most need them (especially if you need to print special size design projects). Plenty of people do fine without bringing a printer
+
+########## RANDOM CHUNK 3  [Prospective Student.txt]  len=230 ##########
+Title: Prospective Student
+
+Getting around is a mixed bag at best. RPI is built into a hill, so it gets tough, particularly in winter. I've never had too big an issue, but I was born and raised in MA, so I was used to it going in.
+
+########## RANDOM CHUNK 4  [Accessing supercomputer.txt]  len=377 ##########
+Title: Accessing supercomputer
+
+The only class I know of is Parallel Programming, mentioned below. I think there's another though.
+The two clusters you linked to were the ones I know of, if there's a sysadmin contact you might want to try emailing it for any specific answers. I should also mention that the CCI houses an opteron cluster too, which might be more up your alley?
+
+########## RANDOM CHUNK 5  [Clubs recommanded.txt]  len=196 ##########
+Title: What clubs/groups (official and not) should I check out this coming Fall?
+
+The short answer is all of them. But I'll recommend HvZ, it's free and you there's no requirements for membership.
