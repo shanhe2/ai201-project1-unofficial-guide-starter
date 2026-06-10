@@ -83,9 +83,11 @@ RPI campus community knowledge including housing, clubs, social life, study spot
      Do not just say "I told it to use the documents" — show the actual instruction or explain
      the mechanism. -->
 
-**System prompt grounding instruction:** 
+**System prompt grounding instruction:** You may only answer using the numbered passages provided in the user message. Do not use any knowledge from your training data. Do not guess or infer details that are not explicitly stated in the passages.
+If the passages do not contain enough information to answer the question, respond with exactly: "I don't have enough information in my sources to answer that." Write your answer as a single prose response. Do not number your answer or mirror the passage numbering.
 
-**How source attribution is surfaced in the response:**
+
+**How source attribution is surfaced in the response:** After the model returns its answer, the corresponding code in generate.py collects sources directly from the retrieved chunk metadata. The LLM is not asked to produce citations.
 
 ---
 
@@ -97,11 +99,11 @@ RPI campus community knowledge including housing, clubs, social life, study spot
 
 | # | Question | Expected answer | System response (summarized) | Retrieval quality | Response accuracy |
 |---|----------|-----------------|------------------------------|-------------------|-------------------|
-| 1 |What do students say about VCC North and VCC South? |It is pretty chill places to work in. | | | |
-| 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. | | | |
-| 3 | What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher. | | | |
-| 4 | What do students say about the website QUACS|It's a godsend for picking classes  | | | |
-| 5 |What do students say about the sq ft in Sharp dorm? | It's 101 sq ft.| | | |
+| 1 |What do students say about VCC North and VCC South? |It is pretty chill places to work in. | Relevant| Accurate|Correct answer retrieved |
+| 2 |Does RPI have supercomputer cluster? |RPI has a bunch of supercomputer clusters. | Relevant| Accurate|Correct source retrieved. |
+| 3 | What do people say about the Fall rush for Greek life? | Fall rush is now only open to sophomores and higher. | Relevant| Accurate| Core answer correct, extra detail from a second chunk|
+| 4 | What do students say about the website QUACS|It's a godsend for picking classes  | Relevant| Accurate|Correct answer retrieved. |
+| 5 |What do students say about the sq ft in Sharp dorm? | It's 101 sq ft.| Partially relevant|Partially accurate | it invented a list structure that doesn't exist in my prompt|
 
 **Retrieval quality:** Relevant / Partially relevant / Off-target  
 **Response accuracy:** Accurate / Partially accurate / Inaccurate
@@ -121,13 +123,13 @@ RPI campus community knowledge including housing, clubs, social life, study spot
      "The embedding model treated the professor's nickname as out-of-vocabulary and returned
      results from an unrelated review" is an explanation. -->
 
-**Question that failed:**
+**Question that failed:** What do students say about the sq ft in Sharp dorm?
 
-**What the system returned:**
+**What the system returned:** The system returned a list of 5 sentences but only the first sentence include the correct answer. Sentences 2 said "No direct quote about sq ft, but it's mentioned that students get their own private room in Sharp." Sentences 3-5 all said "No information about Sharp dorm."
 
 **Root cause (tied to a specific pipeline stage):**
-
-**What you would change to fix it:**
+the system prompt didn't prohibit the model from structuring its output as a numbered list mirroring the passage numbering.
+**What you would change to fix it:** Add to the system prompt: "Do not number your answer or mirror the passage structure. Write a single prose response."
 
 ---
 
